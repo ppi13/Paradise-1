@@ -144,7 +144,7 @@
 
 /turf/simulated/floor/lubed/Initialize(mapload)
 	. = ..()
-	MakeSlippery(TURF_WET_LUBE, INFINITY)
+	MakeSlippery(TURF_WET_ULTRA_LUBE, INFINITY, walkSafely = 0) //Keeps the floors slippery but with a more powerfull stun
 
 /turf/simulated/floor/lubed/pry_tile(obj/item/C, mob/user, silent = FALSE) //I want to get off Mr Honk's Wild Ride
 	if(ishuman(user))

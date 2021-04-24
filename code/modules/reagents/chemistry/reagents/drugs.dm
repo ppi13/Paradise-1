@@ -664,13 +664,17 @@
 	id = "ultralube"
 	description = "Ultra-Lube is an enhanced lubricant which induces effect similar to Methamphetamine in synthetic users by drastically reducing internal friction and increasing cooling capabilities."
 	reagent_state = LIQUID
-	color = "#1BB1FF"
+	color = "#86608E"
 	process_flags = SYNTHETIC
 	overdose_threshold = 20
 	addiction_chance = 10
 	addiction_threshold = 5
 	metabolization_rate = 0.6
 	taste_description = "wiper fluid"
+
+/datum/reagent/lube/ultra/reaction_turf(turf/simulated/T, volume)
+	if(volume >= 1 && istype(T))
+		T.MakeSlippery(TURF_WET_ULTRA_LUBE)
 
 /datum/reagent/lube/ultra/on_mob_life(mob/living/M)
 	var/update_flags = STATUS_UPDATE_NONE

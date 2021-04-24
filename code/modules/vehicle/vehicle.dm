@@ -179,7 +179,7 @@
 		if(has_buckled_mobs())
 			if(issimulatedturf(loc))
 				var/turf/simulated/T = loc
-				if(T.wet == TURF_WET_LUBE)	//Lube! Fall off!
+				if(T.wet == TURF_WET_ULTRA_LUBE)	//Only slip with the slippriest of lubes
 					playsound(src, 'sound/misc/slip.ogg', 50, 1, -3)
 					for(var/m in buckled_mobs)
 						var/mob/living/buckled_mob = m

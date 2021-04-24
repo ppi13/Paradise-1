@@ -103,8 +103,8 @@
 	name = "Ultra-Lube"
 	id = "ultralube"
 	result = "ultralube"
-	required_reagents = list("lube" = 2, "formaldehyde" = 1, "cryostylane" = 1)
-	result_amount = 2
+	required_reagents = list("lube" = 2, "surge" = 3, "cryostylane" = 1)
+	result_amount = 3
 	mix_message = "The mixture darkens and appears to partially vaporize into a chilling aerosol."
 
 /datum/chemical_reaction/surge

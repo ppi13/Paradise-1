@@ -48,11 +48,17 @@
 		if(istype(F))
 			if(wet_setting >= TURF_WET_ICE)
 				wet_overlay = image('icons/effects/water.dmi', src, "ice_floor")
+			if(wet_setting >= TURF_WET_ULTRA_LUBE)
+				wet_overlay = image('icons/effects/water.dmi', src, "wet_floor_static")
+				wet_overlay.color = "#86608E"
 			else
 				wet_overlay = image('icons/effects/water.dmi', src, "wet_floor_static")
 		else
 			if(wet_setting >= TURF_WET_ICE)
 				wet_overlay = image('icons/effects/water.dmi', src, "ice_floor")
+			if(wet_setting >= TURF_WET_ULTRA_LUBE)
+				wet_overlay = image('icons/effects/water.dmi', src, "wet_floor_static")
+				wet_overlay.color = "#86608E"
 			else
 				wet_overlay = image('icons/effects/water.dmi', src, "wet_static")
 		wet_overlay.plane = FLOOR_OVERLAY_PLANE
@@ -80,16 +86,24 @@
 
 			if(M.flying)
 				return ..()
-
 			switch(src.wet)
 				if(TURF_WET_WATER)
-					if(!(M.slip("the wet floor", WATER_STUN_TIME, WATER_WEAKEN_TIME, tilesSlipped = 0, walkSafely = 1)))
-						M.inertia_dir = 0
-						return
+					if(prob(5))
+						if(M)
+							M.Stun(2)
+							M.SpinAnimation(5,1)
+							M.visible_message("<span class='warning'>[M] flips on the wet floor!</span>")
+							return
+					else
+						if(!(M.slip("the wet floor", WATER_STUN_TIME, WATER_WEAKEN_TIME, tilesSlipped = 0, walkSafely = 1)))
+							M.inertia_dir = 0
+							return
 
 				if(TURF_WET_LUBE) //lube
-					M.slip("the floor", 0, 5, tilesSlipped = 3, walkSafely = 0, slipAny = 1)
+					M.slip("the floor", 4, 2, tilesSlipped = 7, walkSafely = 1)
 
+				if(TURF_WET_ULTRA_LUBE) //ultra lube
+					M.slip("the floor", 6, 4, tilesSlipped = 16, walkSafely = 1, slipAny = 1)
 
 				if(TURF_WET_ICE) // Ice
 					if(M.slip("the icy floor", 4, 2, tilesSlipped = 0, walkSafely = 0))
